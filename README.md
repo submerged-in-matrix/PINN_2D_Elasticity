@@ -46,7 +46,7 @@ The governing physics:
 - **Dirichlet BC** — zero displacement at the fixed bottom boundary
 - **Neumann BC** — prescribed traction at the loaded top boundary
 
-Hand derivations for the Neumann boundary conditions and body forces are included in the repository ([`Neumann_Boundary_Condition_Derivation.pdf`](Neumann_Boundary_Condition_Derivation.pdf), [`Body Force derivation.docx`](Body%20Force%20derivation.docx)).
+The derivations for the Neumann boundary conditions and body forces are included in the repository ([`Neumann_Boundary_Condition_Derivation.pdf`](Neumann_Boundary_Condition_Derivation.pdf), [`Body Force derivation.docx`](Body%20Force%20derivation.docx)).
 
 ## Methodology
 
