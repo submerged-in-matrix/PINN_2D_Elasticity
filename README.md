@@ -79,11 +79,11 @@ A **27-configuration grid search** explored:
 
 | Hyperparameter | Values Tested |
 |---|---|
-| Hidden layers | 4, 6, 8 |
-| Neurons per layer | 10, 15, 20 |
+| Hidden layers | 6, 8, 10 |
+| Neurons per layer | 15, 20, 25 |
 | Dropout rate | 0.1, 0.2, 0.3 |
 
-All configurations used **Glorot (Xavier) initialization** and were tracked with validation loss monitoring.
+All configurations used **Glorot (Xavier) initialization**, **1000 epochs to search the space** and were tracked with validation loss monitoring.
 
 ## Results
 
@@ -99,15 +99,14 @@ All configurations used **Glorot (Xavier) initialization** and were tracked with
 
 The **6×15** topology with dropout 0.3 produced:
 
-- **Smooth displacement fields** — continuous u(x, y) and v(x, y) predictions across the full domain, free of mesh artifacts
-- **Physically coherent stress distribution** — σ_xx, σ_yy, and τ_xy fields that respect equilibrium and constitutive relations
-- **Satisfied boundary conditions** — near-zero displacement at the fixed edge, correct traction at the loaded edge
-
+- **Continuous displacement fields** — u_x(x,y) and u_y(x,y) predictions across the full domain, free of discontinuities
+- **Physics-consistent stress distribution** — σ_xx, σ_yy, τ_xy fields with PDE and constitutive residuals driven toward zero during training
+- **Boundary conditions enforced via loss** — Dirichlet and Neumann terms included explicitly in the 4-term MAE objective
 Contour plots of the predicted fields are available in [`contours/`](contours/).
 
 ### What the Loss Means
 
-The validation loss of 2.22 is a composite PDE + BC + stress residual — not a supervised error metric. It quantifies how well the network obeys the governing equations at unseen collocation points. A clear next step is computing **R² against FEM ground truth** to benchmark absolute accuracy.
+The validation loss of 2.22 is a composite PDE + BC + stress residual (Full 10k-epoch run converged to training loss 0.53 — validation against exact analytical solution pending) — not a supervised error metric. It quantifies how well the network obeys the governing equations at unseen collocation points. A clear next step is computing **R² against FEM ground truth** to benchmark absolute accuracy.
 
 ## Repository Structure
 
